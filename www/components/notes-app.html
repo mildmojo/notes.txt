@@ -1,0 +1,51 @@
+<link rel="import" href="note-list-page.html">
+<link rel="import" href="note-editor-page.html">
+
+<polymer-element name="notes-app" constructor="NotesApp">
+  <template>
+    <core-header-panel>
+        <core-toolbar class="title">Notes.txt</core-toolbar>
+    </core-header-panel>
+
+
+    <note-list-page id="listPage" on-edit-note="{{ editNote }}" notes="{{ notes }}" selectedFile="{{ selectedFile }}"></note-list-page>
+    <note-editor-page id="editorPage" on-close="{{ closeEditor }}" file="{{ selectedFile }}"></note-editor-page>
+  </template>
+  <script>
+    Polymer('notes-app', {
+      ready: function() {
+        // $(this.$.listPage).velocity({height: '100%'});
+
+        var notes = [
+            {file: 'gameideas.txt', body: 'Game ideas\nFruited Plane'},
+            {file: 'ordinary.txt', body: 'Ordinary\nSteam swirls from the grate'}
+        ];
+        notes = notes.map(function(note) {
+            var title = _(note.body.split(/\n/)).first();
+            var subtitle = _(note.body.split(/\n/)).rest(1).join('\n');
+            return {title: title, subtitle: subtitle, file: note.file};
+        });
+        this.notes = notes;
+
+        this.$.listPage.style.display = 'block';
+        console.log('Notes added.');
+      },
+      editNote: function(filename) {
+        this.selectedFile = filename;
+
+        this.$.listPage.style.display = 'none';
+        this.$.editorPage.style.display = 'block';
+        // $(this.$.listPage).hide();
+        // $(this.$.editorPage).show();
+        // $(this.$.editorPage).velocity({height: '100%'});
+      },
+      closeEditor: function() {
+        this.$.editorPage.style.display = 'none';
+        this.$.listPage.style.display = 'block';
+        // $(this.$.editorPage).hide();
+        // $(this.$.listPage).show();
+        // $(this.$.editorPage).velocity({height: 0});
+      }
+    });
+  </script>
+</polymer-element>

@@ -1,0 +1,25 @@
+<polymer-element name="note-list" attributes="notes" constructor="NoteList">
+  <template>
+    <ul>
+      <template repeat="{{ notes }}">
+        <li class="note" file="{{ file }}" on-tap="{{ noteClicked }}">
+          <h3>{{ title }}</h3>
+          <p>{{ subtitle }}</p>
+        </li>
+      </template>
+    </ul>
+  </template>
+  <script>
+    Polymer('note-list', {
+      ready: function() {
+        this.notes = [];
+      },
+      noteClicked: function(e, detail, sender) {
+        // open editor page
+        console.log("open editor for note '%s'", sender.getAttribute('file'));
+        this.fire('edit-note', sender.getAttribute('file'));
+        e.preventDefault();
+      }
+    });
+  </script>
+</polymer-element>

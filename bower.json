@@ -1,0 +1,22 @@
+{
+  "name": "notes.txt",
+  "version": "0.0.1",
+  "description": "A simple note-taking app",
+  "main": "app/index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "directory": "www/js",
+  "dependencies": {
+    "underscore": "1.x",
+    "jquery": "2.x",
+    "polymer": "Polymer/polymer#~0.2.4",
+    "platform": "Polymer/platform#~0.2.4",
+    "velocity": "~0.0.9"
+  }
+}

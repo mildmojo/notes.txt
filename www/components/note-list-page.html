@@ -1,0 +1,14 @@
+<link rel="import" href="note-list.html">
+
+<polymer-element name="note-list-page" attributes="notes" class="page" noscript>
+  <template>
+    <note-list id="noteList" notes="{{ notes }}"></note-list>
+  </template>
+  <script>
+    Polymer('note-list-page', {
+      ready: function() {
+        this.notes = [];
+      }
+    });
+  </script>
+</polymer-element>

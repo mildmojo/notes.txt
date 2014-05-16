@@ -1,0 +1,19 @@
+<link rel="import" href="note-editor.html">
+
+<polymer-element name="note-editor-page" attributes="file" class="page">
+  <template>
+    <button on-click="{{ closeEditor }}">Close</button>
+    <note-editor file="{{ file }}"></note-editor>
+  </template>
+  <script>
+    Polymer('note-editor-page', {
+      ready: function() {
+        console.log('Opening %s...', this.file);
+      },
+      closeEditor: function() {
+        console.log('Closing page...');
+        this.fire('close');
+      }
+    });
+  </script>
+</polymer-element>
